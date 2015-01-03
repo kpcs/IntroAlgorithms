@@ -40,7 +40,7 @@
 	</section>
 
 	<section>
-		<h2>Welcome!</h2>
+		<h3>Welcome!</h3>
 		<div class="left-align">
 			<p>Girl Develop It is here to provide affordable and accessible programs to learn software through mentorship and hands-on instruction.</p>
 			<br/>
@@ -55,22 +55,185 @@
 	</section>
 
 	<section>
-	<h2>Welcome!</h2>
-	<div class="left-align">
-		<p>Tell us about yourself.</p>
+		<h3>Welcome!</h3>
+		<div class="left-align">
+			<p>One extra special rule for this class:</p>
+		</div>
+		<br />
+		<div>Don't use the word "obviously"!</div>
+		<br />
 		<ul>
-			<li>Who are you?</li>
-			<li>What do you hope to get out of the class?</li>
-			<li>Fun Question Of The Day ... </li>
+			<li>Quite frankly, it can make you sound like a jerk.</li>
+			<li>If the point were TRULY obvious ("clear, self-evident, or apparent"), you shouldn't need to explain it!</li>
 		</ul>
-	</div>
 	</section>
-<!-- End Introduction -->
-
-<!-- Woo! Slides! -->
 
 	<section>
-		<h2>Thank you for attending!</h2>
+		<h3>What we'll cover</h3>
+
+		<ul>
+			<li>What is an algorithm?</li>
+			<li>What does it mean to "prove correctness" and "analyze runtime"?</li>
+			<li>Sorting</li>
+			<li>Searching</li>
+			<li>Maximum subarray sum</li>
+		</uL>
+	</section>
+
+	<section>
+		<h3>What we won't cover</h3>
+
+		<ul>
+			<li>A semester's worth of algorithms lectures</li>
+			<li>Rigorous proofs of correctness</li>
+			<li>Advanced math to analyze runtimes</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Warm-up exercise!</h3>
+		<div class='left-align'><strong>Your mission:</strong></div>
+		<br />
+		<p>Find a way to shake the hand of every person in the room in the shortest time possible, but in a way that you can be confident you really did shake everyone's hand.</p>
+	</section>
+
+
+<!-- End Introduction -->
+
+
+	<section>
+		<h3>Handshake problem</h3>
+
+		<div class='left-align'>One possible solution to the handshake problem:</div>
+
+		<br />
+		<p>Stand in two parallel lines facing each other. Shake hands with the person in front of you. Take a step to the left, where the last person at the end of the line moves to the beginning of the other line. Continue this process until you have shaken everyone's hand.
+		</p>
+	</section>
+
+	<section>
+		<h3>What is an algorithm?</h3>
+
+		<p>An <strong>algorithm</strong> is an explicit, precise, unambiguous, mechanically-executable sequence of elementary instructions.</p>
+
+		<br />
+
+		<p>The word derives from the name of the 9th century Persian mathematician al-Khwarizmi.
+	</section>
+
+	<section>
+		<h3>What is an algorithm?</h3>
+
+<div class='left-align'>Is this sequence of instructions from the gnomes on South Park an algorithm?</div>
+
+		<pre><code>
+Step 1: Collect underpants.
+
+Step 2: ????
+
+Step 3: Profit!
+		</code></pre>
+
+		<div class='fragment left-align'><strong>Verdict: No, this is not an algorithm. Step 2 is not specific.</strong></div>
+	</section>
+
+	<section>
+		<h3>What is an algorithm?</h3>
+
+<div class='left-align'>Is this sequence of instructions for taking out money from the ATM an algorithm?</div>
+		<pre><code>
+Step&nbsp;1: Insert card into ATM.
+
+Step&nbsp;2: Type your PIN on keypad.
+
+Step&nbsp;3: Enter an amount to withdraw less than your total balance.
+
+Step&nbsp;4: Receive money.
+		</code></pre>
+
+		<div class='fragment left-align'><strong>Verdict: Yes, this is an algorithm.</strong></div>
+	</section>
+
+	<section>
+		<h3>What is an algorithm?</h3>
+
+<div class='left-align'>Is this sequence of instructions from my shampoo bottle an algorithm?</div>
+
+		<pre><code>
+Step 1: Lather.
+
+Step 2: Rinse.
+
+Step 3: Repeat.
+		</code></pre>
+
+		<div class='fragment left-align'><strong>Verdict: No, this is not an algorithm. Step 3 is ambiguous: what do we repeat, and until when?</strong></div>
+	</section>
+
+	<section>
+		<h3>Pseudocode</h3>
+		<p><strong>Pseudocode</strong> uses the structure of formal programming languages and mathematics to break algorithms down into primitive steps. The primitive steps may be written using mathematics, pure English, or an appropriate mixture of the two.</p>
+		<br />
+		<p>Well-written pseudocode reveals the internal structure of the algorithm but hides irrelevant implementation details, making the algorithm much easier to understand, analyze, debug, and implement.</p>
+	</section>
+
+	<section>
+		<h3>Handshake problem: Pseudocode</h3>
+
+		<div class='left-align'><u>HandshakeWithEveryone(P[1 .. n]):</u></div>
+
+		<pre><code>
+&lang;&lang;i represents the number of people you still need to shake hands with&rang;&rang;
+for i &larr; n down to 2
+	&lang;&lang;shake hands&rang;&rang;
+	line1 &larr; P[1 .. n/2]
+	line2 &larr; P[n/2 + 1 .. n]
+	ShakeHands(line1, line2);
+
+	&lang;&lang;shift over one, and wrap the last guy&rang;&rang;
+	P&rsquo;[n] = P[1]
+	for j &larr; n down to 2
+	&nbsp;	P&rsquo;[j-1] = P[j]
+	P &larr; P&rsquo;
+		</code></pre>
+
+	</section>
+
+	<section>
+		<h3>Exercise!</h3>
+		<p>Write pseudocode for the song "99 Bottles of Beer on the Wall" for arbitrary values of bottles of beer.</p>
+
+		<br />
+		<div class='left-align'><u>BottlesofBeer(n):</u></div>
+		<pre><code contenteditable>
+
+		</pre></code>
+		<aside class='notes'>
+For i &larr; n down to 1
+Sing "i bottles of beer on the wall, i bottles of beer,"
+Sing "Take one down, pass it around, i − 1 bottles of beer on the wall."
+Sing "No bottles of beer on the wall, no bottles of beer,"
+Sing "Go to the store, buy some more, n bottles of beer on the wall."
+		</aside>
+
+	</section>
+
+<!-- Woo! Slides! -->
+	<section>
+		<h3>Jeff Erickson's Algorithms notes</h3>
+
+		<br />
+
+		<a href='http://www.cs.illinois.edu/~jeffe/teaching/algorithms' target='_blank'>
+			http://www.cs.illinois.edu/~jeffe/teaching/algorithms
+		</a>
+
+		<img src='http://ws.engr.illinois.edu/directory/viewphoto/50176/240' />
+	</section>
+
+
+	<section>
+		<h3>Thank you for attending!</h3>
 		<p>Please help us make this class better by completing this short survey:</p>
 		<br/>
 		<p><a target="_blank" href="#">
