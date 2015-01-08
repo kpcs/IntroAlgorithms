@@ -24,6 +24,8 @@
 	<!--[if lt IE 9]>
 	<script src="lib/js/html5shiv.js"></script>
 	<![endif]-->
+
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 
 <body>
@@ -35,13 +37,14 @@
 	<!-- Introduction -->
 	<section>
 		<h3>Intro to Algorithms</h3>
-		<img src="css/images/gdi_logo_badge.png" alt="Girl Develop It" style='height: 250px; width: 250px;'>
+		<h4>Slides: bit.ly/IntroAlgorithms</h4>
+		<img src="css/images/gdi_logo_badge.png" alt="Girl Develop It" style='height: 300px; width: 300px; border: 0px;'>
 <br/>
 	</section>
 
 	<section>
 		<h3>Welcome!</h3>
-		<div class="left-align">
+		<div>
 			<p>Girl Develop It is here to provide affordable and accessible programs to learn software through mentorship and hands-on instruction.</p>
 			<br/>
 			<p>Some "rules":</p>
@@ -56,9 +59,7 @@
 
 	<section>
 		<h3>Welcome!</h3>
-		<div class="left-align">
-			<p>One extra special rule for this class:</p>
-		</div>
+		<p>One extra special rule for this class:</p>
 		<br />
 		<div>Don't use the word "obviously"!</div>
 		<br />
@@ -72,11 +73,17 @@
 		<h3>What we'll cover</h3>
 
 		<ul>
-			<li>What is an algorithm?</li>
-			<li>What does it mean to "prove correctness" and "analyze runtime"?</li>
-			<li>Sorting</li>
-			<li>Searching</li>
-			<li>Maximum subarray sum</li>
+			<li class='fragment'>What is an algorithm?</li>
+			<li class='fragment'>Why bother learning algorithms?</li>
+			<li class='fragment'>How to solve a problem with an algorithm, including:
+					<ul>
+						<li class='fragment'>Stating a problem formally</li>
+						<li class='fragment'>Writing psuedocode</li>
+						<li class='fragment'>Proving correctness</li>
+						<li class='fragment'>Analyzing runtime</li>
+					</ul>
+			</li>
+
 		</uL>
 	</section>
 
@@ -84,32 +91,25 @@
 		<h3>What we won't cover</h3>
 
 		<ul>
-			<li>A semester's worth of algorithms lectures</li>
-			<li>Rigorous proofs of correctness</li>
-			<li>Advanced math to analyze runtimes</li>
+			<li class='fragment'>A semester's worth of algorithms lectures</li>
+			<li class='fragment'>Every algorithm ever</li>
+			<li class='fragment'>...In fact, most algorithms</li>
+			<li class='fragment'>Rigorous proofs</li>
+			<li class='fragment'>Advanced math</li>
 		</ul>
 	</section>
 
 	<section>
 		<h3>Warm-up exercise!</h3>
-		<div class='left-align'><strong>Your mission:</strong></div>
+		<br />
+		<p><strong>Your mission:</strong></p>
 		<br />
 		<p>Find a way to shake the hand of every person in the room in the shortest time possible, but in a way that you can be confident you really did shake everyone's hand.</p>
+		<br />
+		<p class='fragment'>What are some approaches you came up with?</p>
 	</section>
-
 
 <!-- End Introduction -->
-
-
-	<section>
-		<h3>Handshake problem</h3>
-
-		<div class='left-align'>One possible solution to the handshake problem:</div>
-
-		<br />
-		<p>Stand in two parallel lines facing each other. Shake hands with the person in front of you. Take a step to the left, where the last person at the end of the line moves to the beginning of the other line. Continue this process until you have shaken everyone's hand.
-		</p>
-	</section>
 
 	<section>
 		<h3>What is an algorithm?</h3>
@@ -124,7 +124,7 @@
 	<section>
 		<h3>What is an algorithm?</h3>
 
-<div class='left-align'>Is this sequence of instructions from the gnomes on South Park an algorithm?</div>
+<p>Is this sequence of instructions from the gnomes on South Park an algorithm?</p>
 
 		<pre><code>
 Step 1: Collect underpants.
@@ -134,13 +134,13 @@ Step 2: ????
 Step 3: Profit!
 		</code></pre>
 
-		<div class='fragment left-align'><strong>Verdict: No, this is not an algorithm. Step 2 is not specific.</strong></div>
+		<p class='fragment'><strong>Verdict: No, this is not an algorithm. Step 2 is not specific, and a machine could not execute it.</strong></p>
 	</section>
 
 	<section>
 		<h3>What is an algorithm?</h3>
 
-<div class='left-align'>Is this sequence of instructions for taking out money from the ATM an algorithm?</div>
+		<p>Is this sequence of instructions for taking out money from the ATM an algorithm?</p>
 		<pre><code>
 Step&nbsp;1: Insert card into ATM.
 
@@ -151,13 +151,13 @@ Step&nbsp;3: Enter an amount to withdraw less than your total balance.
 Step&nbsp;4: Receive money.
 		</code></pre>
 
-		<div class='fragment left-align'><strong>Verdict: Yes, this is an algorithm.</strong></div>
+		<p class='fragment'><strong>Verdict: Yes, this is an algorithm.</strong></p>
 	</section>
 
 	<section>
 		<h3>What is an algorithm?</h3>
 
-<div class='left-align'>Is this sequence of instructions from my shampoo bottle an algorithm?</div>
+		<p>Is this sequence of instructions from my shampoo bottle an algorithm?</p>
 
 		<pre><code>
 Step 1: Lather.
@@ -167,20 +167,115 @@ Step 2: Rinse.
 Step 3: Repeat.
 		</code></pre>
 
-		<div class='fragment left-align'><strong>Verdict: No, this is not an algorithm. Step 3 is ambiguous: what do we repeat, and until when?</strong></div>
+		<p class='fragment'><strong>Verdict: No, this is not an algorithm. Step 3 is ambiguous: what do we repeat, and until when?</strong></p>
+	</section>
+
+	<section>
+		<h3>Exercise!</h3>
+		<p><strong>Your mission: Think!</strong></p>
+		<br />
+		<p>What are some algorithms from your everyday life?</p>
+		<br />
+		<p>What are some algorithms you've encountered while programming?</p>
+	</section>
+
+	<section>
+		<h3>Why bother learning algorithms?</h3>
+		<h4>a.k.a. Why are you here?</h4>
+
+		<ul>
+			<li class='fragment'>It's like weight lifting for your brain. Exercise the muscles now so that they're ready to use when you need them.</li>
+			<li class='fragment'>It will help you think of techniques for solving problems.</li>
+			<li class='fragment'>It will expose you to some classic problems in computer science, which are often referenced in articles, tech talks, and interview questions.</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>How to solve a problem with an algorithm</h3>
+
+		<p class='fragment'><strong>1. State the problem formally.</strong></p>
+
+		<br />
+		<p class='fragment'>Be as clear as possible. Use generalized variables instead of specific examples or instances of the problem.</p>
+
+		<br />
+		<p class='fragment'><strong>Bad:</strong> Sort some numbers like \((51, 62, 27, 3, 94)\).</p>
+		<p class='fragment'><strong>Good:</strong> Sort an array of integers \(A_{1}, A_{2}, \ldots A_{n}\).</p>
+	</section>
+
+	<section>
+		<h3>Exercise!</h3>
+		<p>Can you transform this loosely-defined instance of a problem into a well-defined statement of a more generic problem?<p>
+		<br />
+		<p class='fragment'>Let's say I gave you five blocks with the weights of 1 pound, 2 pounds, 5 pounds, 8 pounds, and 10 pounds, respectively. Could you fill a sack with blocks so that its weight is exactly 21 pounds?</p>
+		<br />
+		<p class='fragment'>Interested in thinking more about this? It's called the "Knapsack Problem".</p>
+	</section>
+
+	<section>
+		<h3>How to solve a problem with an algorithm</h3>
+
+		<p class='fragment'>
+			<strong>2. Find a solution to the problem*</strong>
+			<br />
+			<small>* Note: this step in particular makes this list NOT an algorithm</small>
+		</p>
+
+		<br />
+		<p class='fragment'>You might solve the problem using known techniques, ingenuity, or a little bit of both.</p>
+
+		<br />
+		<p class='fragment'>Find a way to express your solution to others, perhaps through the use of <strong>pseudocode</strong>.</p>
 	</section>
 
 	<section>
 		<h3>Pseudocode</h3>
-		<p><strong>Pseudocode</strong> uses the structure of formal programming languages and mathematics to break algorithms down into primitive steps. The primitive steps may be written using mathematics, pure English, or an appropriate mixture of the two.</p>
-		<br />
-		<p>Well-written pseudocode reveals the internal structure of the algorithm but hides irrelevant implementation details, making the algorithm much easier to understand, analyze, debug, and implement.</p>
+		<ul>
+			<li class='fragment'>Uses the structure of formal programming languages and mathematics.</li>
+			<li class='fragment'>Breaks algorithms down into primitive steps.</li>
+			<li class='fragment'>The primitive steps may be written using mathematics, pure English, or an appropriate mixture of the two.</li>
+			<li class='fragment'>Reveals the internal structure of the algorithm but hides irrelevant implementation details.</li>
+			<li class='fragment'>Makes the algorithm much easier to understand, analyze, debug, and implement.</li>
+		</ul>
 	</section>
 
 	<section>
-		<h3>Handshake problem: Pseudocode</h3>
+		<h3>Pseudocode</h3>
 
-		<div class='left-align'><u>HandshakeWithEveryone(P[1 .. n]):</u></div>
+		<p>Here is an algorithm for singing "99 Bottles of Beer on the Wall", for arbitrary values of 99:</p>
+
+		<br />
+		<p class='fragment'>BottlesOfBeer(\(n\)):</p>
+		<pre class='fragment'><code>
+For i &larr; n down to 1
+  Sing "i bottles of beer on the wall, i bottles of beer,"
+  Sing "Take one down, pass it around,"
+  Sing "i − 1 bottles of beer on the wall."
+Sing "No bottles of beer on the wall, no bottles of beer,"
+Sing "Go to the store, buy some more, n bottles of beer on the wall."
+		</code></pre>
+	</section>
+
+	<section>
+		<h3>Handshake problem</h3>
+
+		<p>Find a way to shake the hand of every person in the room in the shortest time possible, but in a way that you can be confident you really did shake everyone's hand.</p>
+
+		<br />
+
+		<p class='fragment'>
+			One possible solution:
+			<br /><br />
+			Stand in two parallel lines facing each other. Shake hands with the person in front of you. Take a step to the left, where the last person at the end of the line moves to the beginning of the other line. Continue this process until you have shaken everyone's hand.
+		</p>
+	</section>
+
+	<section>
+		<h3>Handshake problem</h3>
+		<p>Let's express it with pseudocode!</p>
+
+		<br />
+		<p>HandshakeWithEveryone(\(P[1 .. n]\)):</p>
 
 		<pre><code>
 &lang;&lang;i represents the number of people you still need to shake hands with&rang;&rang;
@@ -197,51 +292,77 @@ for i &larr; n down to 2
 	P &larr; P&rsquo;
 		</code></pre>
 
-	<aside class='notes'>
-		<ul>
-			<li>Mention implementation details: Assuming n is even</li>
-			<li>Mention time it takes to run ShakeHands</li>
-		</ul>
-	</aside>
-
+		<aside class='notes'>
+			<ul>
+				<li>Mention implementation details: Assuming n is even</li>
+				<li>Mention time it takes to run ShakeHands</li>
+			</ul>
+		</aside>
 	</section>
 
 	<section>
 		<h3>Exercise!</h3>
-		<p>Write pseudocode for the song "99 Bottles of Beer on the Wall" for arbitrary values of bottles of beer.</p>
 
-		<br />
-		<div class='left-align'><u>BottlesofBeer(n):</u></div>
-		<pre><code contenteditable>
-		</pre></code>
+		<p>Write pseudocode that prints the lyrics of the song "BINGO" for arbitrary long names of dogs.</p>
 
-		<p>Done with that one? Try the song "12 Days of Christmas" for arbitrary values of days.</p>
+		<em>
+		<br />There was a farmer who had a dog
+		<br />And BINGO was his name-o
+		<br />B-I-N-G-O, B-I-N-G-O, B-I-N-G-O
+		<br />And BINGO was his name-o
+		<br />There was a farmer who had a dog
+		<br />And BINGO was his name-o
+		<br />(clap)-I-N-G-O, (clap)-I-N-G-O, (clap)-I-N-G-O
+		<br />...
+		</em>
+		<p class='fragment'>Hint: FarmerHadADog(\(B[1 .. n]\)))</p>
+	</section>
 
-		<br />
+	<section>
+		<h3>How to solve a problem with an algorithm</h3>
 
-		<div class='left-align'><u>NDaysOfChristmas(gifts[2 .. n])</u></div>
+		<p class='fragment'><strong>3. Prove your algorithm is correct.</strong></p>
+		<ul>
+			<li class='fragment'>We must convince our audience (and ourselves!) that the algorithm actually does what it's supposed to do.</p>
+			<li class='fragment'>The algorithm must be correct for <em>all possible</em> inputs.  It's not enough to show that the algorithm does the right thing on some example input.</li>
+			<li class='fragment'>Usually requires a formal, mathematical proof of correctness.</li>
+		</ul>
+	</section>
 
-		<aside class='notes'>
-For i &larr; n down to 1
-	Sing "i bottles of beer on the wall, i bottles of beer,"
-	Sing "Take one down, pass it around, i − 1 bottles of beer on the wall."
-Sing "No bottles of beer on the wall, no bottles of beer,"
-Sing "Go to the store, buy some more, n bottles of beer on the wall."
-		</aside>
+	<section>
+		<h3>Mathematical proofs</h3>
+
+		<p class='fragment'>Just kidding. We're totally not going to cover this today.</p>
+
+		<p class='fragment'>In lieu of knowing how to construct formal proofs, you can do a few other things in practice:</p>
+			<ul>
+				<li class='fragment'>Try to reason, even informally, about why your algorithm is correct.</li>
+				<li class='fragment'>Explain your algorithm to a peer. Having to state something clearly enough that someone else understands it is helpful, as is a peer's input.</li>
+				<li class='fragment'>If you're coding, write unit tests that cover all possible inputs.</li>
+			</ul>
+	</section>
+
+	<section>
+		<h3>How to solve a problem with an algorithm</h3>
+
+		<p class='fragment'><strong>4. Analyze the runtime of your algorithm.</strong></p>
+
+		TODO!
 
 	</section>
 
-<!-- Woo! Slides! -->
+<!-- Wrapping up! -->
 	<section>
 		<h3>Jeff Erickson's Algorithms notes</h3>
 
+		<img src='http://ws.engr.illinois.edu/directory/viewphoto/50176/240' style='float: right'/>
+		<p>These notes provided the backbone of this class. Some definitions and examples in these slides were taken directly from these notes. Many thanks to Jeff for making his not-a-textbook an available resource.</p>  
 		<br />
 
 		<a href='http://www.cs.illinois.edu/~jeffe/teaching/algorithms' target='_blank'>
 			http://www.cs.illinois.edu/~jeffe/teaching/algorithms
 		</a>
 
-		<img src='http://ws.engr.illinois.edu/directory/viewphoto/50176/240' />
 	</section>
 
 

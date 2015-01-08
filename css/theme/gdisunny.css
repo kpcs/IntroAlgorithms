@@ -43,7 +43,7 @@ body {
   color: #333333; }
 
 strong {
-	font-family: "Gotham-Bold";
+	font-family: "Gotham-Bold" !important;
 }
 
 ::selection {
