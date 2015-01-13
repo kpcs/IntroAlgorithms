@@ -26,6 +26,8 @@
 	<![endif]-->
 
 	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/sigma.min.js"></script>
 </head>
 
 <body>
@@ -200,7 +202,7 @@ Step 3: Repeat.
 
 		<br />
 		<p class='fragment'><strong>Bad:</strong> Sort some numbers like \((51, 62, 27, 3, 94)\).</p>
-		<p class='fragment'><strong>Good:</strong> Sort an array of integers \(A_{1}, A_{2}, \ldots A_{n}\).</p>
+		<p class='fragment'><strong>Good:</strong> Sort an array of integers \(A_{1}, A_{2}, \ldots A_{n}\) in increasing order.</p>
 	</section>
 
 	<section>
@@ -315,7 +317,6 @@ for i &larr; n down to 2
 		<br />(clap)-I-N-G-O, (clap)-I-N-G-O, (clap)-I-N-G-O
 		<br />...
 		</em>
-		<p class='fragment'>Hint: FarmerHadADog(\(B[1 .. n]\)))</p>
 	</section>
 
 	<section>
@@ -337,7 +338,7 @@ for i &larr; n down to 2
 		<p class='fragment'>In lieu of knowing how to construct formal proofs, you can do a few other things in practice:</p>
 			<ul>
 				<li class='fragment'>Try to reason, even informally, about why your algorithm is correct.</li>
-				<li class='fragment'>Explain your algorithm to a peer. Having to state something clearly enough that someone else understands it is helpful, as is a peer's input.</li>
+				<li class='fragment'>Explain your algorithm to a peer. You'll have to be very clear to convince your peer, and your peer's feedback can be valuable.</li>
 				<li class='fragment'>If you're coding, write unit tests that cover all possible inputs.</li>
 			</ul>
 	</section>
@@ -345,10 +346,208 @@ for i &larr; n down to 2
 	<section>
 		<h3>How to solve a problem with an algorithm</h3>
 
-		<p class='fragment'><strong>4. Analyze the runtime of your algorithm.</strong></p>
+		<p>
+			<strong>4. Analyze the runtime of your algorithm.</strong>
+			<br />
+			<small>(and/or storage space needed to execute the algorithm)</small>
+		</p>
 
-		<p class='fragment'>TODO!</p>
+		<p class='fragment'>We want to communicate how long our algorithm will take to execute, and we want to be able to compare it against other algorithms claiming to do the same task.</p>
 
+		<p class='fragment'>It's impossible to predict what size input your algorithm is going to have to operate on, so we express run time in terms of the <strong>size of the input</strong>.</p>
+
+	</section>
+
+	<section>
+		<h3>Analyzing run time</h3>
+
+		<p>Let's consider the expression \(2x + 7\) for different inputs of size \(x\):</p>
+
+		<ul>
+			<li class='fragment'>If \(x=0\): \(2*0 + 7 = 7\)</li>
+			<li class='fragment'>If \(x=1\): \(2*1 + 7 = 9\)</li>
+			<li class='fragment'>If \(x=10\): \(2*10 + 7 = 27\)</li>
+			<li class='fragment'>If \(x=100\): \(2*100 + 7 = 207\)</li>
+			<li class='fragment'>If \(x=10000\): \(2*10000 + 7 = 20007\)</li>
+		</ul>
+
+		<br/>
+		<br />
+		<p class='fragment'>The constant \(7\) becomes less and less a part of the answer as the size of \(x\) gets bigger and bigger.</p>
+	</section>
+
+	<section>
+		<h3>Analyzing runtime</h3>
+
+		<p><strong>Asymptotic analysis</strong> is the method of characterizing a mathematical function by how it trends as the input size approaches infinity.</p>
+
+		<br />
+
+		<p class='fragment'>In computer science, we use <strong>big O notation</strong> to talk about asymptotic growth.</p>
+
+		<br />
+		<div class='fragment'>\(2x + 7 = O(x)\)
+			<br />
+			<small>You say: "two ex plus seven is big oh of ex"</small>
+		</div>
+
+		<br />
+		<p class='fragment'>If \(f(x) = O(g(x))\), this means that \(f\) does not grow faster than \(g\). </p>
+	</section>
+
+	<section>
+		<h3>Analyzing runtime</h3>
+
+		<p class='fragment'>To find the big O function, you can often "drop" terms from your expression that grow significantly slower than the leading term.</p>
+
+		<br />
+		<ul>
+			<li class='fragment'>\(2x + 7 = O(x)\)</li>
+			<li class='fragment'>\(5x^{2} + 15x + 8 = O(x^{2})\)</li>
+			<li class='fragment'>\(2x! + 6x + 37 = O(x!)\)</li>
+		</ul>
+
+		<br />
+		<br />
+
+		<p class='fragment'>In practice, you shouldn't have to think too much about complicated equations, but it's important to understand where the idea of "big O" comes from.</p>
+	</section>
+
+	<section>
+		<h3>Analyzing runtime</h3>
+
+		<p>For your purposes, it's probably best to think about big O conceptually.</p>
+
+		<br />
+		<p class='fragment'><strong>Example 1:</strong> What is the first element of the array \(A[1 .. n]\)?</p>
+
+		<br />
+		
+		<p class='fragment'><strong>Algorithm:</strong> Simply return \(A[1]\), regardless of the size of the number of elements, \(n\).</p>
+
+		<br />
+
+		<p class='fragment'>This took us a <strong>constant</strong> amount of time, a.k.a. \(O(1)\).</p>
+	</section>
+
+	<section>
+		<h3>Analyzing runtime</h3>
+
+		<p><strong>Example 2:</strong> What is the largest number in the array \(A[1 .. n]\)?</p>
+
+		<pre class='fragment'><code>
+b &larr; -infinity
+for i &larr; 1 to n
+  if A[i] &gt; b
+     b &larr; A[i]
+return b
+		</code></pre>
+
+		<br />
+
+		<p class='fragment'>We had to <strong>loop over every element</strong> of the array, so we had to look at all \(n\) inputs.</p>
+
+		<p class='fragment'>This took us a <strong>linear</strong> amount of time, a.k.a. \(O(n)\).</p>
+	</section>
+
+	<section>
+		<h3>Analyzing runtime</h3>
+
+		<p><strong>Example 3:</strong> Does the array \(A[1 .. n]\) contain any duplicates?</p>
+
+		<pre class='fragment'><code>
+for i &larr; 1 to n
+  for j &larr; 1 to n
+	if i = j
+	  continue
+	else if A[i] = A[j]
+	  return true
+return false
+		</code></pre>
+
+		<br />
+
+		<p class='fragment'>We have <strong>two nested loops</strong> over the array.</p>
+
+		<p class='fragment'>This took us a <strong>quadratic</strong> amount of time, a.k.a. \(O(n^{2})\).</p>
+	</section>
+
+	<section>
+		<h3>How to solve a problem with an algorithm</h3> 
+
+		<p>Let's review what we've learned!</p>
+
+		<br />
+		<ol>
+			<li class='fragment'>State the problem formally.</li>
+			<li class='fragment'>Find a solution to the problem.</li>
+			<li class='fragment'>Prove your algorithm is correct.</li>
+			<li class='fragment'>Analyze the runtime of your algorithm.</li>
+		</ol>
+
+		<br />
+		<br />
+		<p class='fragment'>Got it? Good. Now let's have some fun!</p>
+
+	</section>
+
+	<section>
+		<h3>Graph Theory</h3>
+
+		<p>A <strong>graph</strong> is defined as \(G = (V, E)\), where \(V\) is a set of objects called <strong>vertices</strong> (singular: vertex), and \(E\) is a set of <strong>edges</strong> joining pairs of vertices.</p>
+
+		<br />
+
+		<p class='fragment'>Graphs represent a set of concepts and how they are related to each other, and they can be used to model many concepts.</p>
+	</section>
+
+	<section>
+		<h3>Graph Theory</h3>
+
+
+		<div id="sigma-container" style='width: 200px; height: 200px;'></div>
+		<script>
+var graph = {
+  nodes: {
+    n1: { label: 'Node 1', x: 0, y: 0, size: 10 },
+    n2: { label: 'Node 2', x: 1, y: 1, size: 20 },
+    n3: { label: 'Node 3', x: -1, y: -1, size: 30 }
+  },
+  edges: {
+    e1: { source: 'n1', target: 'n2' },
+    e2: { source: 'n1', target: 'n3' }
+  }
+};
+		
+
+$(document).ready(function() {
+	var k;
+	var s = sigma.init(
+	  document.getElementById('sigma-container')
+	);
+
+	for (k in graph.nodes)
+	  s.addNode(k, graph.nodes[k]);
+
+	for (k in graph.edges)
+	  s.addEdge(
+		k,
+		graph.edges[k].source,
+		graph.edges[k].target,
+		graph.edges[k]
+	  );
+
+	s.draw();
+});
+		</script>
+
+	</section>
+
+	<section>
+	<h3>Sorting Algorithms</h3>
+
+	<p>Nice explanations of sorting <a href='http://theoryapp.com/selection-insertion-and-bubble-sort/' target='_blank'>here</a>.</p>
+	<iframe width="560" height="315" src="http://www.youtube.com/embed/kPRA0W1kECg" frameborder="0" allowfullscreen></iframe>
 	</section>
 
 	<section>
@@ -416,7 +615,7 @@ for i &larr; n down to 2
 </div>
 
 <script src="lib/js/head.min.js"></script>
-<script src="js/reveal.min.js"></script>
+<script src="js/reveal.js"></script>
 
 <script>
 
