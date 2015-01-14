@@ -27,7 +27,6 @@
 
 	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script type="text/javascript" src="./js/sigma.min.js"></script>
 </head>
 
 <body>
@@ -354,24 +353,29 @@ for i &larr; n down to 2
 
 		<p class='fragment'>We want to communicate how long our algorithm will take to execute, and we want to be able to compare it against other algorithms claiming to do the same task.</p>
 
-		<p class='fragment'>It's impossible to predict what size input your algorithm is going to have to operate on, so we express run time in terms of the <strong>size of the input</strong>.</p>
+		<p class='fragment'>It's impossible to predict what size input your algorithm is going to have to operate on, so we express runtime in terms of the <strong>size of the input</strong>.</p>
 
 	</section>
 
 	<section>
-		<h3>Analyzing run time</h3>
+		<h3>Analyzing runtime</h3>
 
 		<p>Let's consider the expression \(2x + 7\) for different inputs of size \(x\):</p>
 
-		<ul>
-			<li class='fragment'>If \(x=0\): \(2*0 + 7 = 7\)</li>
-			<li class='fragment'>If \(x=1\): \(2*1 + 7 = 9\)</li>
-			<li class='fragment'>If \(x=10\): \(2*10 + 7 = 27\)</li>
-			<li class='fragment'>If \(x=100\): \(2*100 + 7 = 207\)</li>
-			<li class='fragment'>If \(x=10000\): \(2*10000 + 7 = 20007\)</li>
-		</ul>
+		<table>
+		<tr class='fragment'>
+			<td style='width: 50%;'>If \(x=0\):</td><td style='width: 50%;'> \(2*0 + 7 = 7\)</td>
+		</tr><tr class='fragment'>
+			<td style='width: 50%;'>If \(x=1\):</td><td style='width: 50%;'> \(2*1 + 7 = 9\)</td>
+		</tr><tr class='fragment'>
+			<td style='width: 50%;'>If \(x=10\):</td><td style='width: 50%;'> \(2*0 + 7 = 27\)</td>
+		</tr><tr class='fragment'>
+			<td style='width: 50%;'>If \(x=100\):</td><td style='width: 50%;'> \(2*0 + 7 = 207\)</td>
+		</tr><tr class='fragment'>
+			<td style='width: 50%;'>If \(x=10000\):</td><td style='width: 50%;'> \(2*0 + 7 = 20007\)</td>
+		</tr>
+		</table>
 
-		<br/>
 		<br />
 		<p class='fragment'>The constant \(7\) becomes less and less a part of the answer as the size of \(x\) gets bigger and bigger.</p>
 	</section>
@@ -390,9 +394,6 @@ for i &larr; n down to 2
 			<br />
 			<small>You say: "two ex plus seven is big oh of ex"</small>
 		</div>
-
-		<br />
-		<p class='fragment'>If \(f(x) = O(g(x))\), this means that \(f\) does not grow faster than \(g\). </p>
 	</section>
 
 	<section>
@@ -401,13 +402,10 @@ for i &larr; n down to 2
 		<p class='fragment'>To find the big O function, you can often "drop" terms from your expression that grow significantly slower than the leading term.</p>
 
 		<br />
-		<ul>
-			<li class='fragment'>\(2x + 7 = O(x)\)</li>
-			<li class='fragment'>\(5x^{2} + 15x + 8 = O(x^{2})\)</li>
-			<li class='fragment'>\(2x! + 6x + 37 = O(x!)\)</li>
-		</ul>
+			<div class='fragment'>\(2x + 7 = O(x)\)</div>
+			<div class='fragment'>\(5x^{2} + 15x + 8 = O(x^{2})\)</div>
+			<div class='fragment'>\(2x! + 6x + 37 = O(x!)\)</div>
 
-		<br />
 		<br />
 
 		<p class='fragment'>In practice, you shouldn't have to think too much about complicated equations, but it's important to understand where the idea of "big O" comes from.</p>
@@ -504,42 +502,8 @@ return false
 	<section>
 		<h3>Graph Theory</h3>
 
-
-		<div id="sigma-container" style='width: 200px; height: 200px;'></div>
-		<script>
-var graph = {
-  nodes: {
-    n1: { label: 'Node 1', x: 0, y: 0, size: 10 },
-    n2: { label: 'Node 2', x: 1, y: 1, size: 20 },
-    n3: { label: 'Node 3', x: -1, y: -1, size: 30 }
-  },
-  edges: {
-    e1: { source: 'n1', target: 'n2' },
-    e2: { source: 'n1', target: 'n3' }
-  }
-};
 		
 
-$(document).ready(function() {
-	var k;
-	var s = sigma.init(
-	  document.getElementById('sigma-container')
-	);
-
-	for (k in graph.nodes)
-	  s.addNode(k, graph.nodes[k]);
-
-	for (k in graph.edges)
-	  s.addEdge(
-		k,
-		graph.edges[k].source,
-		graph.edges[k].target,
-		graph.edges[k]
-	  );
-
-	s.draw();
-});
-		</script>
 
 	</section>
 
@@ -548,6 +512,10 @@ $(document).ready(function() {
 
 	<p>Nice explanations of sorting <a href='http://theoryapp.com/selection-insertion-and-bubble-sort/' target='_blank'>here</a>.</p>
 	<iframe width="560" height="315" src="http://www.youtube.com/embed/kPRA0W1kECg" frameborder="0" allowfullscreen></iframe>
+	</section>
+
+	<section>
+
 	</section>
 
 	<section>
