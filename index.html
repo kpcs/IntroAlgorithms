@@ -27,6 +27,46 @@
 
 	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+	<script type="text/javascript" src="js/viz.js"></script>
+
+	<script type="text/vnd.graphviz" id="konigsberg">
+		graph K {
+			C -- A [ label=e ];
+			C -- A [ label=d ];
+			C -- D [ label=g ];
+			A -- D [ label=c ];
+			A -- B [ label=a ];
+			A -- B [ label=b ];
+			B -- D [ label=f ];
+
+			{ rank=same; A,D }
+		}
+	</script>
+
+	<script type="text/vnd.graphviz" id="euler">
+			graph E {
+			    node[shape="point", height="0.2"];
+				edge[penwidth="2"];
+
+				1 -- 3
+				3 -- 5
+				5 -- 7
+				2 -- 4
+				4 -- 6
+				6 -- 8
+				1 -- 4
+				2 -- 3
+				5 -- 8
+				6 -- 7
+				3 -- 4
+				5 -- 6
+
+				{ rank=same; 1,3,5,7 }
+				{ rank=same; 2,4,6,8 }
+			}
+	</script>
+
 </head>
 
 <body>
@@ -84,6 +124,8 @@
 						<li class='fragment'>Analyzing runtime</li>
 					</ul>
 			</li>
+			<li class='fragment'>Introduction to Graph Theory</li>
+			<li class='fragment'>Introduction to Trees</li>
 			<li class='fragment'>TODO</li>
 		</uL>
 	</section>
@@ -500,22 +542,99 @@ return false
 	</section>
 
 	<section>
-		<h3>Graph Theory</h3>
+		<h3>Graph Theory in Real Life</h3>
 
-		
-
+		<br />
+		<p>Transit maps, like PATCO:</p>
+		<br />
+		<img src="images/patco.png" />
 
 	</section>
+
+	<section>
+		<h3>Graph Theory in Real Life</h3>
+
+		<p>Flight maps, like for Spirit Airlines:</p>
+		<img src="images/spirit.jpg" />
+
+	</section>
+
+	<section>
+		<h3>Bridges of Königsberg</h3>
+		<p>The city of Königsberg in Prussia was set on both sides of the Pregel River, and included two large islands which were connected to each other and the mainland by <strong>seven bridges</strong>.</p>
+		<img src="images/konigsberg.png" />
+	</section>
+
+	<section>
+		<h3>Bridges of Königsberg</h3>
+		<p><strong>The big question:</strong></p>
+		<p>Is it possible to find a walk through the city that would cross each bridge once and only once?</p>
+		<div>
+			<img class='fragment' src="images/euler.png" style="height: 200px;">
+			<span class='fragment' id="konigsberg_output"></span>
+		</div>
+		<p class='fragment'><strong>Exercise</strong>: Try it!</p>
+	</section>
+
+	<section>
+		<h3>Bridges of Königsberg</h3>
+		<p><strong>The key piece of intuition:</strong></p>
+		<br />
+		<div>Except at the beginning and end of the journey, whenever one enters a vertex by a bridge, one also has to leave that vertex by a bridge.</div>
+		<br />
+		<p class='fragment'>It follows that every vertex (except for the start and the finish) must have an <strong>EVEN</strong> number of edges touching it.</p>
+	</section>
+
+	<section>
+		<h3>Bridges of Königsberg</h3>
+		<p><strong>Definition:</strong> We call the number of edges coming out of a vertex the <strong>degree</strong> of the vertex.</p>
+		<br />
+		<p class='fragment'><strong>Definition:</strong> A <strong>walk</strong> or a <strong>path</strong> is a sequence of vertices and edges, where each edge's endpoints are the preceding and following vertices in the sequence.</p>
+		<br />
+		<p class='fragment'><strong>Definition:</strong> A <strong>tour</strong> or a <strong>circuit</strong> is a walk where the vertices at the beginning and end of the walk are the same.</p>
+	</section>
+
+	<section>
+		<h3>Bridges of Königsberg</h3>
+		<p>This problem was studied by <strong>Leonard Euler</strong> (pronounced "oil-er") in 1735 and laid the foundations for graph theory and topology.</p>
+		<br />
+		<p class='fragment'>In Euler's honor, we say that a graph that contains exactly <strong>zero or two vertices</strong> of <strong>even degree</strong> has an <strong>Eulerian path</strong> (or walk).</p>
+		<br />
+		<p class='fragment'>If the start and endpoints are the same vertex, then it is called an <strong>Eulerian tour</strong> (or circuit).</p>
+	</section>
+	<section>
+		<h3>Bridges of Königsberg</h3>
+		<br />
+		<img src="images/euler.png" style="height: 200px;">
+		<p><strong>Conclusion</strong>: Since the graph corresponding to the Königsberg bridges has four vertices of odd degree, it cannot have an Eulerian path.</p>
+	</section>
+
+	<section>
+		<h3>Exercises</h3>
+		<p><strong>1.</strong> Find an Eulerian trail for the graph below:</p>
+		<div id="euler_output"></div>
+		<br />
+		<p><strong>2.</strong> A graph is called <strong>complete</strong> if <em>every pair</em> of distinct vertices has an <em>edge</em> between them. (No loops from a vertex back to itself.) Draw the <strong>complete graph</strong> on 1 vertex, 2 vertices, 3 vertices, 4 vertices, and 5 vertices.</p>
+	</section>
+
+	<section>
+		<h3>Trees</h3>
+		<p><strong>Definition:</strong> A graph is <strong>connected</strong> if it is in one piece; that is, if a path exists between any pair of vertices.</p>
+		<br />
+		<p class='fragment'><strong>Definition:</strong> A graph contains a <strong>cycle</strong> if it contains a path from any vertex back to itself.</p>
+		<br />
+		<p class='fragment'><strong>Definition:</strong> A <strong>tree</strong> is a connected graph with NO cycles.</p>
+		<br />
+		<p class='fragment'><strong>Exercise:</strong> Draw the family tree of your maternal grandmother (list her children and grandchildren).</p>
+	</section>
+
+
 
 	<section>
 	<h3>Sorting Algorithms</h3>
 
 	<p>Nice explanations of sorting <a href='http://theoryapp.com/selection-insertion-and-bubble-sort/' target='_blank'>here</a>.</p>
 	<iframe width="560" height="315" src="http://www.youtube.com/embed/kPRA0W1kECg" frameborder="0" allowfullscreen></iframe>
-	</section>
-
-	<section>
-
 	</section>
 
 	<section>
@@ -551,10 +670,18 @@ return false
 	</section>
 
 	<section>
+		<h3>Recommended Textbooks</h3>
+		<p>
+		<strong><u>Introduction to Graph Theory</u> - Robin J. Wilson</strong><br />(<a href='http://www.amazon.com/Introduction-Graph-Theory-5th-Edition/dp/027372889X' target='_blank'>available on Amazon</a>)
+		<br />About this book: An advanced undergraduate textbook for a course dedicated to the study of graph theory.
+		</p>
+	</section>
+
+	<section>
 		<h3>Jeff Erickson's Algorithms notes</h3>
 
 		<img src='http://ws.engr.illinois.edu/directory/viewphoto/50176/240' style='float: right'/>
-		<p>These notes provided the backbone of this class. Some definitions and examples in these slides were taken directly from these notes. Many thanks to Jeff for making his not-a-textbook an available resource.</p>
+		<p>These notes provided some of the backbone of this class. Some definitions and examples in these slides were taken directly from these notes. Many thanks to Jeff for making his not-a-textbook an available resource.</p>
 		<br />
 
 		<a href='http://www.cs.illinois.edu/~jeffe/teaching/algorithms' target='_blank'>
@@ -584,6 +711,14 @@ return false
 
 <script src="lib/js/head.min.js"></script>
 <script src="js/reveal.js"></script>
+
+<script>
+	$('script[type="text/vnd.graphviz"]').each(function(index, spec) {
+		var rendered = Viz(spec.innerHTML, 'svg');
+		$('#' + spec.getAttribute('id') + '_output').html(rendered);
+	});
+
+</script>
 
 <script>
 
