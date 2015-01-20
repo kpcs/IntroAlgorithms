@@ -67,6 +67,18 @@
 			}
 	</script>
 
+	<script type="text/vnd.graphviz" id="DFS">
+		graph D {
+			a -- b
+			a -- c
+			c -- d
+			c -- e
+			d -- f
+			d -- g
+			b -- j
+		}
+	</script>
+
 </head>
 
 <body>
@@ -513,7 +525,7 @@ return false
 	</section>
 
 	<section>
-		<h3>How to solve a problem with an algorithm</h3> 
+		<h3>How to solve a problem with an algorithm</h3>
 
 		<p>Let's review what we've learned!</p>
 
@@ -617,19 +629,39 @@ return false
 		<p><strong>2.</strong> A graph is called <strong>complete</strong> if <em>every pair</em> of distinct vertices has an <em>edge</em> between them. (No loops from a vertex back to itself.) Draw the <strong>complete graph</strong> on 1 vertex, 2 vertices, 3 vertices, 4 vertices, and 5 vertices.</p>
 	</section>
 
+
 	<section>
-		<h3>Trees</h3>
+		<h3>Graph traversal</h3>
+		<br />
 		<p><strong>Definition:</strong> A graph is <strong>connected</strong> if it is in one piece; that is, if a path exists between any pair of vertices.</p>
 		<br />
-		<p class='fragment'><strong>Definition:</strong> A graph contains a <strong>cycle</strong> if it contains a path from any vertex back to itself.</p>
+		<p class='fragment'>Suppose we wanted to visit every single vertex of a connected graph.</p>
+		<br />
+		<p class='fragment'>There are two well-known algorithms that we can use.</p>
+	</section>
+
+	<section>
+		<h3>Graph traversal</h3>
+		<br />
+		<p class='fragment'><strong>Depth-first search</strong> (DFS): Penetrate as deeply as possible into a tree before fanning out to other vertices.</p>
+		<br />
+		<p class='fragment'><strong>Breadth-first search</strong> (BFS): Fan out to as many vertices as possible before penetrating deeper into the tree.</p>
+	</section>
+
+	<section>
+		<h3>Exercise</h3>
+		<p>What are the DFS and BFS representations of this graph?</p>
+		<div id="DFS_output"></div>
+	</section>
+
+	<section>
+		<h3>Trees</h3>
+		<p><strong>Definition:</strong> A graph contains a <strong>cycle</strong> if it contains a path from any vertex back to itself.</p>
 		<br />
 		<p class='fragment'><strong>Definition:</strong> A <strong>tree</strong> is a connected graph with NO cycles.</p>
 		<br />
 		<p class='fragment'><strong>Exercise:</strong> Draw the family tree of your maternal grandmother (list her children and grandchildren).</p>
 	</section>
-
-
-
 	<section>
 	<h3>Sorting Algorithms</h3>
 
@@ -641,14 +673,13 @@ return false
 		<h3>Todo</h3>
 
 		<ul>
-			<li>Trees: BFS, DFS, Greedy algorithms / minimum spanning tree / Kruskall's, dijkstra?, </li>
+			<li>Trees: Greedy algorithms / minimum spanning tree / Kruskall's, dijkstra?, </li>
 			<li>Searching: Insertion, Bubble, Merge</li>
 			<li>Intro to recursion</li>
-			<li>Memoization: space vs time</li>
 			<li>Towers of hanoi</li>
 			<li>Fibonacci numbers</li>
 			<li>Reduction?</li>
-			<li>Graphs: Euler tour, traveling salesman (NP!), matching, flow?, least common ancestor, </li>
+			<li>Graphs: traveling salesman (NP!) </li>
 		</ul>
 
 	</section>
