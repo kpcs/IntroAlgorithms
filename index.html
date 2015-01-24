@@ -568,7 +568,20 @@ return false
 
 		<p>Flight maps, like for Spirit Airlines:</p>
 		<img src="images/spirit.jpg" />
+	</section>
 
+	<section>
+		<h3>Graph Theory in Real Life</h3>
+
+		<p>The possibilities are endless.  Here's a few more:</p>
+
+		<ul>
+			<li class='fragment'>Wikipedia articles and the hyperlinks between them</li>
+			<li class='fragment'>Users or objects on a social media site and the "friendships" or "likes" between them</li>
+			<li class='fragment'>Relationships of movie actors, so as to play <a href='http://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon' target="_blank">Six Degrees of Kevin Bacon</a></li>
+		</ul>
+		<br /><br />
+		<p class='fragment'>Once you have modeled your problem as a graph, then you can use Graph Theory to solve your problem.</p>
 	</section>
 
 	<section>
@@ -635,7 +648,7 @@ return false
 		<br />
 		<p><strong>Definition:</strong> A graph is <strong>connected</strong> if it is in one piece; that is, if a path exists between any pair of vertices.</p>
 		<br />
-		<p class='fragment'>Suppose we wanted to visit every single vertex of a connected graph.</p>
+		<p class='fragment'>Suppose we have a connected graph where each vertex has a label, and we're looking for a vertex with a particular label.</p>
 		<br />
 		<p class='fragment'>There are two well-known algorithms that we can use.</p>
 	</section>
@@ -643,25 +656,150 @@ return false
 	<section>
 		<h3>Graph traversal</h3>
 		<br />
-		<p class='fragment'><strong>Depth-first search</strong> (DFS): Penetrate as deeply as possible into a tree before fanning out to other vertices.</p>
+		<p><strong>Depth-first search</strong> (DFS): Starting from some vertex, explore as far as possible down each branch before backtracking.</p>
+		<img class='fragment' src="images/dfs.png" />
+	</section>
+
+	<section>
+		<h3>Graph Traversal</h3>
 		<br />
-		<p class='fragment'><strong>Breadth-first search</strong> (BFS): Fan out to as many vertices as possible before penetrating deeper into the tree.</p>
+		<p><strong>Breadth-first search</strong> (BFS): Starting from some vertex, fan out to as many vertices as possible before exploring deeper into the tree.</p>
+		<img class='fragment' src="images/bfs.png">
+	</section>
+
+	<section>
+		<h3>Graph Traversal</h3>
+		<p>When you should use DFS versus BFS is something that varies on the nature of the graph you're searching.</p>
+		<br />
+		<p class='fragment'>If the graph expands rapidly, then it may take too much memory to remember all the nodes you're fanning through for BFS.</p>
+		<br />
+		<p class='fragment'>If the graph is very deep, then it might take too much time getting lost down individual paths for DFS.</p>
 	</section>
 
 	<section>
 		<h3>Exercise</h3>
-		<p>What are the DFS and BFS representations of this graph?</p>
+		<p>Let's say you were looking for the vertex "f".  How many vertices do you have to check against when searching by DFS? by BFS?</p>
 		<div id="DFS_output"></div>
 	</section>
 
+
 	<section>
-		<h3>Trees</h3>
-		<p><strong>Definition:</strong> A graph contains a <strong>cycle</strong> if it contains a path from any vertex back to itself.</p>
+		<h3>Graph Theory: Wrap up</h3>
 		<br />
-		<p class='fragment'><strong>Definition:</strong> A <strong>tree</strong> is a connected graph with NO cycles.</p>
+		<div>You can use graphs to model lots of real-world problems, and then apply algorithms to the resulting graph to solve those problems.</div>
+
 		<br />
-		<p class='fragment'><strong>Exercise:</strong> Draw the family tree of your maternal grandmother (list her children and grandchildren).</p>
+		<p class='fragment'>If you like this stuff, then you might want to look into more Graph Theory problems, such as:</p>
+		<ul>
+			<li class='fragment'>Traveling Salesman Problem</li>
+			<li class='fragment'>Four Color Theorem</li>
+			<li class='fragment'>Hamiltonian paths</li>
+			<li class='fragment'>Minimum spanning tree</li>
+			<li class='fragment'>Max Flow / Min Cut</li>
+		</ul>
 	</section>
+
+	<section>
+		<h3>Reduction</h3>
+		<br />
+		<p><strong>Reducing</strong> one problem X to another problem Y means to write an algorithm for X that uses an algorithm for Y as a black box or subroutine.</p>
+		<br />
+		<p class='fragment'>The correctness of the resulting algorithm cannot depend in any way on <em>how</em> the algorithm for Y works. The only thing we can assume is that the black box solves Y correctly.</p>
+		<br />
+		<p class='fragment'>Think of the black box Y as MAGICAL.</p>
+	</section>
+
+	<section>
+		<h3>Recursion</h3>
+		<br />
+		<p>Recursion is a particularly powerful kind of reduction, which can be described loosely as follows:</p>
+		<br >
+		<ul>
+			<li class='fragment'>If the given instance of the problem is small or simple enough, just solve it.</li>
+			<li class='fragment'>Otherwise, reduce the problem to one or more <em>simpler instances of the same problem</em>.</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Recursion</h3>
+
+		<br/>
+		<p class='fragment'>When we reduce problem X to smaller versions of problem X, we rely on those smaller versions of problem X magically solving themselves.</p>
+
+		<br />
+		<p class='fragment'>My teacher used to call this the magic of the "Recursion Fairy".</p>
+	</section>
+
+	<section>
+		<h3>Recursion</h3>
+
+		<p>To solve a problem with recursion:</p>
+		<br />
+		<ul>
+			<li class='fragment'>You need to be able to solve some sort of <strong>base case</strong>. This is often done on inputs of size 0 or 1.</li>
+			<li class='fragment'>You need to be able to use the results that the recursion fairy gives you.</li>
+			<li class='fragment'>Don't try to recurse over an infinite list of items.</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Recursion: DFS</h3>
+		<p>Remember Depth-First Search that we talked about before? We can express that as a recursive algorithm.</p>
+
+		<br />
+		<p class='fragment'>DFS(graph \(G\), vertex \(v\), searchterm \(i\)):</p>
+		<pre class='fragment'><code>
+if v is null
+   return false
+else if v's label matches i
+   return true
+else
+   for every edge from v to other vertex u
+      return DFS(G, u, i)
+		</code></pre>
+	</section>
+
+	<section>
+		<h3>Recursion: DFS</h3>
+		<p>We've reduced the problem of finding label \(i\) in a huge graph \(G\) to finding label \(i\) in a slightly smaller graph, \(G\) less the vertex \(v\).</p>
+		<br />
+		<p class='fragment'>Once we have the answer from the subgraph, we can simply return it.</p>
+		<br/>
+		<p class='fragment'>And it just works.</p>
+		<br />
+		<p class='fragment'>Thanks, Recursion Fairy.</p>
+	</section>
+
+	<section>
+		<h3>Exercise</h3>
+		<p>Consider the following problem regarding the population of rabbits:</p>
+		<ul class='fragment'>
+			<li>Each pair of rabbits produces a new pair of offspring each month</li>
+			<li>Rabbits become fertile in their second month of life</li>
+			<li>Old rabbits never die</li>
+		</ul>
+		<br /><br />
+		<p class='fragment'>If a pair of newborn rabbits are introduced in January, how many pairs of rabbits will there be at the end of the year?</p>
+	</section>
+
+	<section>
+		<h3>Recursion: Fibonacci</h3>
+
+		<br />
+		<p>Perhaps it's useful to know that that problem was posed in 1202 by Leonardo Fibonacci...</p>
+		<br />
+		<p class='fragment'>We can express how to calculate a term in the Fibonacci series recursively!</p>
+		<br />
+		<p class='fragment'>Fibonacci(\(n\)):</p>
+		<pre class='fragment'><code>
+if (n &lt; 2)
+   return n
+else
+   return Fibonacci(n-1) + Fibonacci(n-2)
+		</code></pre>
+	</section>
+
+
 	<section>
 	<h3>Sorting Algorithms</h3>
 
@@ -673,13 +811,9 @@ return false
 		<h3>Todo</h3>
 
 		<ul>
-			<li>Trees: Greedy algorithms / minimum spanning tree / Kruskall's, dijkstra?, </li>
-			<li>Searching: Insertion, Bubble, Merge</li>
-			<li>Intro to recursion</li>
-			<li>Towers of hanoi</li>
-			<li>Fibonacci numbers</li>
-			<li>Reduction?</li>
-			<li>Graphs: traveling salesman (NP!) </li>
+			<li>Mention: Towers of hanoi</li>
+			<li>Second day Merge sort ice breaker, and mention other sortings</li>
+			<li>Coin sets / Greedy algorithm</li>
 		</ul>
 
 	</section>
@@ -725,7 +859,7 @@ return false
 		<h3>Thank you for attending!</h3>
 		<p>Please help us make this class better by completing this short survey:</p>
 		<br/>
-		<div><a target="_blank" href="#">tbd</a></div>
+		<div><a target="_blank" href="http://bit.ly/algorithms-survey">http://bit.ly/algorithms-survey</a></div>
 	</section>
 
 	<!-- End of slides -->
