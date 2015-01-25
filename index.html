@@ -138,6 +138,7 @@
 			<li class='fragment'>Introduction to Graph Theory</li>
 			<li class='fragment'>Introduction to Trees</li>
 			<li class='fragment'>Introduction to Recursion</li>
+			<li class='fragment'>Introduction to Sorting</li>
 			<li class='fragment'>Introduction to Greedy algorithms</li>
 		</uL>
 	</section>
@@ -700,6 +701,52 @@ return false
 	</section>
 
 	<section>
+		<h3>Day 2: Warm-up exercise!</h3>
+		<small>Reading these slides ahead of time? This slide will move around to be in the actual place where day 2 starts.  Plus, some content might change depending on how quickly we get through material on Day 1.</small>
+		<br />
+		<p><strong>Your mission:</strong></p>
+		<br />
+		<p>Sort yourselves in height order following the <strong>Merge Sort</strong> algorithm.</p>
+
+		<br />
+		<p>We'll walk through it together!</p>
+	</section>
+
+	<section>
+		<h3>Merge Sort Part 1: Divide</h3>
+		<ol>
+			<li>Start as one unorganized clump of \(n\) humans.</li>
+			<li class='fragment'>Split into two even groups.</li>
+			<li class='fragment'>Each of the two groups splits into two groups (total: four groups of \(n/4\) humans).  Keep track of how you are splitting.</li>
+			<li class='fragment'>Continue splitting up (and keep track of the splits!) until there are \(n\) groups, each with \(1\) human.</li>
+		</ol>
+	</section>
+
+	<section>
+		<h3>Merge Sort Part 2: Merge</h3>
+		<ol>
+			<li>Each pair of humans that was the last to break apart should get back together into a group of 2.</li>
+			<li class='fragment'>Compare between the two of you who is taller and who is shorter. Shorter person stands on the left side, taller person stands on the right side.</li>
+			<li class='fragment'>Now the two pairs that originally split apart from each other work together to merge...
+		</ol>
+	</section>
+
+	<section>
+		<h3>Merge Sort Part 2: Merge</h3>
+		<ol style='list-style-type: lower-alpha;'>
+			<li>Starting from the SHORTEST person in each group, figure out who is truly the shortest. Let's say this person came from group A.  The shortest person moves to the left-most position. The other short person from group B stays put.</li>
+			<li class='fragment'>The next-shortest person from group A now compares against the person who stayed put.</li>
+			<li class='fragment'>Continue comparing until your two pairs are merged into a line of four.</li>
+		</ol>
+		<br/>
+		<br/>
+		<p class='fragment'>Continue this process until everyone has merged into a SINGLE line!</p>
+
+		</ol>
+
+	</section>
+
+	<section>
 		<h3>Reduction</h3>
 		<br />
 		<p><strong>Reducing</strong> one problem X to another problem Y means to write an algorithm for X that uses an algorithm for Y as a black box or subroutine.</p>
@@ -799,25 +846,156 @@ else
 		</code></pre>
 	</section>
 
-
 	<section>
-	<h3>Sorting Algorithms</h3>
+		<h3>Recursion: Fibonacci</h3>
 
-	<p>Nice explanations of sorting <a href='http://theoryapp.com/selection-insertion-and-bubble-sort/' target='_blank'>here</a>.</p>
-	<iframe width="560" height="315" src="http://www.youtube.com/embed/kPRA0W1kECg" frameborder="0" allowfullscreen></iframe>
+		<div>Fib(12) = Fib(11) + Fib(10)</div>
+		<div class='fragment'>Fib(11) = Fib(10) + Fib(9)</div>
+		<div class='fragment'>Fib(10) = Fib(9) + Fib(8)</div>
+		<div class='fragment'>...</div>
+		<div class='fragment'>Fib(3) = 1 + 1</div>
+		<br />
+		<p class='fragment'>Something to keep in mind: often with recursion, you repeat the same calculations over and over again as you recurse.</p>
+
+		<p class='fragment'>If you have enough storage space, you can save some time by saving values as you calculate them. This is called <strong>memoization</strong>.</p>
 	</section>
 
 	<section>
-		<h3>Todo</h3>
+		<h3>Recursion: Wrap up</h3>
+		<br />
+		<p>You can often solve problems by <strong>reducing</strong> a problem to another problem.</p>
+		<br />
+		<p class='fragment'>If you reduce a problem to one or more <strong>smaller instances of itself</strong> then you are performing <strong>recursion</strong>.</p>
+		<br />
+		<p class='fragment'>Solve for a small <strong>base case</strong> and be able to combine and return the results of the smaller, magical pieces.</p>
+	</section>
 
+	<section>
+		<h3>Recursion: Wrap up</h3>
+		<br />
+		<p>Interested in solving problems with recursion? Look into some other problems that have elegant recursive solutions, such as:</p>
 		<ul>
-			<li>Mention: Towers of hanoi</li>
-			<li>Second day Merge sort ice breaker, and mention other sortings</li>
-			<li>Coin sets / Greedy algorithm</li>
+			<li class='fragment'>Towers of Hanoi<br/><small>(did you get to play with it before class?)</small></li>
+			<li class='fragment'>Binary search</li>
+			<li class='fragment'>Filesystem traversal</li>
+			<li class='fragment'>Lots of other algorithms that can be expressed recursively!</li>
 		</ul>
+	</section>
+
+	<section>
+		<h3>Sorting Algorithms</h3>
+		<br />
+		<p>In today's warm-up, we sorted ourselves using the <strong>Merge Sort</strong> algorithm.</p>
+		<br />
+		<p>There are lots of other ways to sort things!</p>
+	</section>
+
+	<section>
+		<h3>Sorting Algorithms</h3>
+
+		<ol>
+			<li><strong>Selection sort</strong> - repeatedly find the smallest element and append to the sorted list</li>
+			<li class='fragment'><strong>Insertion sort</strong> - repeatedly take the first element and find it's place in the sorted list</li>
+			<li class='fragment'><strong>Quick sort</strong> - repeatedly picks a pivot point and finds elements smaller and larger than the pivot</li>
+			<li class='fragment'><strong>Merge sort</strong> - divide into small groups and repeatedly merge the sorted sub-lists</li>
+			<li class='fragment'><strong>Radix sort</strong> - repeatedly sort by significant digits, from smallest to largest </li>
+			<li class='fragment'><strong>Bubble sort</strong> - repeatedly compare pairs and swap if necessary until the list is sorted </li>
+		</ol>
 
 	</section>
 
+	<section>
+	<h3>Sorting Algorithms: Visuals!</h3>
+		<br/>
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/kPRA0W1kECg" frameborder="0" allowfullscreen></iframe>
+	</section>
+
+	<section>
+		<h3>Special topics</h3>
+		<br />
+		<p>If there's one thing I learned in computer science classes, it's that the speaker always talks about their own research last.</p>
+		<br />
+		<p class='fragment'>Today I'm going to teach you about <strong>coin sets</strong>.</p>
+	</section>
+
+	<section>
+		<h3>Quick exercise</h3>
+		<br />
+		<p>Let's say you are a cashier and you owe somebody 43 cents.</p>
+		<br />
+		<p>1. What is the maximum number of coins you could give to the person?</p>
+		<br />
+		<p>2. What is the minimum number of coins you could give to the person?</p>
+	</section>
+
+	<section>
+		<h3>Coin sets</h3>
+		<br />
+		<p>We can characterize the denominations of the coins of the US with an array of values called a <strong>coin set</strong>:</p>
+		<br />
+		<div class='fragment'>\((1, 5, 10, 25, 50, 100)\)</div>
+		<br />
+		<p class='fragment'>You'll use the minimum number of coins by always choosing the largest denomination coin that is not larger than the amount you have left to make.</p>
+	</section>
+
+	<section>
+		<h3>Greedy algorithms</h3>
+		<br />
+		<p>A <strong>greedy algorithm</strong> is an algorithm that always makes the locally-optimal choice with the hopes of finding a global optimum.</p>
+		<br />
+		<p class='fragment'>Sometimes, a greedy algorithm finds an optimal solution.</p>
+		<br />
+		<p class='fragment'>For many problems, a greedy algorithm will NOT produce a correct solution. But sometimes it produces a close-enough approximation to the optimal result.</p>
+	</section>
+
+	<section>
+		<h3>Non-Greedy coin sets</h3>
+		<br />
+		<p>Instead of the standard US coin set, what if you had the following coin set:</p>
+		<div class='fragment'>\((1, 3, 4)\)</div>
+		<br />
+		<p class='fragment'>Spoiler alert: this is a coin set where the greedy algorithm WON'T always work. There is at least one <strong>counterexample to greediness</strong>.
+		<br />
+		<p class='fragment'><strong>Exercise:</strong> Find an amount of change that you CAN make greedily.  Find an amount of change that you CANNOT make greedily.</p>
+	</section>
+
+	<section>
+		<h3>Non-Greedy coin sets</h3>
+		<br />
+		<p><a href="http://moneyart.biz/dd/" target="_blank">Antarctica Dream-Dollars</a>, the official currency of Nadiria, the lost colony of Antactica, is a fun example of a non-greedy coin set:</p>
+		<br />
+		<div class='fragment'>\((1, 4, 7, 13, 28, 52, 91, 365)\)</div>
+		<br />
+		<p class='fragment'>Were the coin set creators to have left off the 365 or were they to include rather the denomination 364, they would have a greedy coin set!</p>
+	</section>
+
+	<section>
+		<h3>Non-Greedy coin sets</h3>
+		<br />
+		<p>A real-life example of a non-greedy coin set is the English system of currency from pre-1971:</p>
+		<br />
+		<div class='fragment'>\((\frac{1}{2}, 1, 3, 6, 12, 24, 30, 60, 240)\)</div>
+	</section>
+
+	<section>
+		<h3>Final Wrap Up!</h3>
+		<ul>
+			<li class='fragment'>What is an algorithm?</li>
+			<li class='fragment'>How to solve a problem with an algorithm, including:
+					<ul>
+						<li class='fragment'>Stating a problem formally</li>
+						<li class='fragment'>Writing psuedocode</li>
+						<li class='fragment'>Proving correctness</li>
+						<li class='fragment'>Analyzing runtime</li>
+					</ul>
+			</li>
+			<li class='fragment'>Introduction to Graph Theory</li>
+			<li class='fragment'>Introduction to Trees</li>
+			<li class='fragment'>Introduction to Recursion</li>
+			<li class='fragment'>Introduction to Sorting</li>
+			<li class='fragment'>Introduction to Greedy algorithms</li>
+		</uL>
+	</section>
 <!-- Wrapping up! -->
 	<section>
 		<h3>Recommended Textbooks</h3>
