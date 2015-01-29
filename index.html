@@ -79,6 +79,33 @@
 		}
 	</script>
 
+	<script type="text/vnd.graphviz" id="recurse1">
+		graph R1 {
+			a [label=""]
+			a -- F_1
+			a -- c
+			c [label=""]
+			c -- F_2
+			c -- e
+			e [label=""]
+			e -- F_3
+			e -- F_4
+		}
+	</script>
+
+	<script type="text/vnd.graphviz" id="recurse2">
+		graph R2 {
+			a [label=""]
+			a -- b
+			b [label=""]
+			b -- F_1
+			b -- F_2
+			a -- e
+			e [label=""]
+			e -- F_3
+			e -- F_4
+		}
+	</script>
 </head>
 
 <body>
@@ -136,8 +163,8 @@
 					</ul>
 			</li>
 			<li class='fragment'>Introduction to Graph Theory</li>
-			<li class='fragment'>Introduction to Recursion</li>
 			<li class='fragment'>Introduction to Sorting</li>
+			<li class='fragment'>Introduction to Recursion</li>
 			<li class='fragment'>Introduction to Greedy algorithms</li>
 		</uL>
 	</section>
@@ -644,31 +671,41 @@ return false
 
 
 	<section>
-		<h3>Graph traversal</h3>
+		<h3>Tree traversal</h3>
 		<br />
 		<p><strong>Definition:</strong> A graph is <strong>connected</strong> if it is in one piece; that is, if a path exists between any pair of vertices.</p>
 		<br />
-		<p class='fragment'>Suppose we have a connected graph where each vertex has a label, and we're looking for a vertex with a particular label.</p>
-		<br />
-		<p class='fragment'>There are two well-known algorithms that we can use.</p>
+		<p class='fragment'><strong>Definition:</strong> A graph is a <strong>tree</strong> if every two vertices are connected by exactly one path. Another way to define a tree is to say that there are no circuits or cycles from one vertex back to itself.</p>
 	</section>
 
 	<section>
-		<h3>Graph traversal</h3>
+		<h3>Tree Traversal</h3>
+		<br />
+		<p>Suppose we have a connected tree where each vertex has a label, and we're looking for a vertex with a particular label.</p>
+		<br />
+		<p class='fragment'>There are two well-known algorithms that we can use:</p>
+		<ul class='fragment'>
+			<li>Depth-first search</li>
+			<li>Breadth-first search</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Tree traversal</h3>
 		<br />
 		<p><strong>Depth-first search</strong> (DFS): Starting from some vertex, explore as far as possible down each branch before backtracking.</p>
 		<img class='fragment' src="images/dfs.png" />
 	</section>
 
 	<section>
-		<h3>Graph Traversal</h3>
+		<h3>Tree Traversal</h3>
 		<br />
 		<p><strong>Breadth-first search</strong> (BFS): Starting from some vertex, fan out to as many vertices as possible before exploring deeper into the tree.</p>
 		<img class='fragment' src="images/bfs.png">
 	</section>
 
 	<section>
-		<h3>Graph Traversal</h3>
+		<h3>Tree Traversal</h3>
 		<p>When you should use DFS versus BFS is something that varies on the nature of the graph you're searching.</p>
 		<br />
 		<p class='fragment'>If the graph expands rapidly, then it may take too much memory to remember all the nodes you're fanning through for BFS.</p>
@@ -682,16 +719,45 @@ return false
 		<div id="DFS_output"></div>
 	</section>
 
+	<section>
+		<h3>Traveling Salesman Problem</h3>
+
+		<p>The famous traveling salesman problem asks the following question: Given a list of cities and the distances between each pair of cities, what is the <strong>shortest possible route</strong> that visits each city <strong>exactly once</strong> and returns to the origin city?</p>
+		<br />
+
+		<p>This can be modeled as a graph where the cities are the vertices, the connections are the edges, and the distances are <strong>weights</strong> or labels on the edges.</p>
+	</section>
+
+	<section>
+		<h3>Traveling Salesman Problem</h3>
+		<br />
+		<img src='images/tsp.svg' style='width:400px; border: 0px;'/>
+
+	</section>
+
+	<section>
+		<h3>Traveling Salesman Problem</h3>
+
+		<img src='http://imgs.xkcd.com/comics/traveling_salesman_problem.png' />
+	</section>
+
+	<section>
+		<h3>Traveling Salesman Problem</h3>
+
+		<p>Although we don't nearly have enough time to fully go into WHY, it's worth pointing out why this problem is famous: it's one of a set of problems that are called <strong>NP-hard</strong>.</p>
+		<br/>
+		<p class='fragment'>Only very long-running (think: exponential!) solutions have been found.  If you find an algorithm that takes only a polynomial amount of time, you will be a very rich and famous celebrity of computer science.</p>
+
+	</section>
 
 	<section>
 		<h3>Graph Theory: Wrap up</h3>
 		<br />
-		<div>You can use graphs to model lots of real-world problems, and then apply algorithms to the resulting graph to solve those problems.</div>
+		<p>You can use graphs to model lots of real-world problems, and then apply algorithms to the resulting graph to solve those problems.</p>
 
 		<br />
 		<p class='fragment'>If you like this stuff, then you might want to look into more Graph Theory problems, such as:</p>
 		<ul>
-			<li class='fragment'>Traveling Salesman Problem</li>
 			<li class='fragment'>Four Color Theorem</li>
 			<li class='fragment'>Hamiltonian paths</li>
 			<li class='fragment'>Minimum spanning tree</li>
@@ -700,7 +766,25 @@ return false
 	</section>
 
 	<section>
-		<h3>Day 2: Stand-up exercise!</h3>
+		<h3>Sorting Algorithms</h3>
+		<p>There are lots of ways to sort things! Here's some:</p>
+		<ol>
+			<li class='fragment'><strong>Selection sort</strong> - repeatedly find the smallest element and append to the sorted list</li>
+			<li class='fragment'><strong>Insertion sort</strong> - repeatedly take the first element and find it's place in the sorted list</li>
+			<li class='fragment'><strong>Quick sort</strong> - repeatedly picks a pivot point and finds elements smaller and larger than the pivot</li>
+			<li class='fragment'><strong>Merge sort</strong> - divide into small groups and repeatedly merge the sorted sub-lists</li>
+			<li class='fragment'><strong>Bubble sort</strong> - repeatedly compare pairs and swap if necessary until the list is sorted </li>
+		</ol>
+
+	</section>
+
+	<section>
+	<h3>Sorting Algorithms: Visualization!</h3>
+		<br/>
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/kPRA0W1kECg" frameborder="0" allowfullscreen></iframe>
+	</section>
+	<section>
+		<h3>Stand-up exercise!</h3>
 		<br />
 		<p><strong>Your mission:</strong></p>
 		<br />
@@ -747,11 +831,30 @@ return false
 	<section>
 		<h3>Reduction</h3>
 		<br />
-		<p><strong>Reducing</strong> one problem X to another problem Y means to write an algorithm for X that uses an algorithm for Y as a black box or subroutine.</p>
+		<p><strong>Reducing</strong> one problem X to another problem Y means to write an algorithm for X that uses an algorithm for Y as a <strong>black box or subroutine.</strong></p>
 		<br />
 		<p class='fragment'>The correctness of the resulting algorithm cannot depend in any way on <em>how</em> the algorithm for Y works. The only thing we can assume is that the black box solves Y correctly.</p>
 		<br />
 		<p class='fragment'>Think of the black box Y as MAGICAL.</p>
+	</section>
+
+	<section>
+		<h3>Reduction</h3>
+		<br />
+		<p>We use reductions every day in real life, and they're very common in programming. For example, consider my husband's commute:</p>
+		<br/>
+		<p class='fragment'>Problem: Get from our house to work.</p>
+		<ul>
+			<li class='fragment'>Walk from our house to the PATCO station.</li>
+			<li class='fragment'>Ride PATCO. (black box!)</li>
+			<li class='fragment'>Walk from 12-13/Locust to work</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Exercise</h3>
+		<br/>
+		<p>Can you think of something you do in real life or something you had to program where you used a subroutine or black box?</p>
 	</section>
 
 	<section>
@@ -769,7 +872,7 @@ return false
 		<h3>Recursion</h3>
 
 		<br/>
-		<p class='fragment'>When we reduce problem X to smaller versions of problem X, we rely on those smaller versions of problem X magically solving themselves.</p>
+		<p>When we reduce problem X to smaller versions of problem X, we rely on those smaller versions of problem X magically solving themselves.</p>
 
 		<br />
 		<p class='fragment'>My teacher used to call this the magic of the "Recursion Fairy".</p>
@@ -781,12 +884,94 @@ return false
 		<p>To solve a problem with recursion:</p>
 		<br />
 		<ul>
-			<li class='fragment'>You need to be able to solve some sort of <strong>base case</strong>. This is often done on inputs of size 0 or 1.</li>
+			<li class='fragment'>You need to solve some sort of <strong>base case</strong>. This is often means solving the problem for an input of size 0 or 1.</li>
+			<li class='fragment'>You need to divide up the problem into smaller parts and pass them to the recursion fairy.</li>
 			<li class='fragment'>You need to be able to use the results that the recursion fairy gives you.</li>
 			<li class='fragment'>Don't try to recurse over an infinite list of items.</li>
 		</ul>
 	</section>
 
+	<section>
+		<h3>Writing letters</h3>
+		<p>Suppose you had to write letters to \(n\) friends.</p>
+		<br/>
+		<p class='fragment'>You could solve this by looping (a.k.a. "iterative").</p>
+		<br />
+		<p class='fragment'>WriteLetter(Friend_1, Friend_2, ..., Friend_n):</p>
+		<pre class='fragment'><code>
+for i &larr; 1 to n
+    get a piece of paper and a pen and write to Friend_i
+		</code></pre>
+	</section>
+
+	<section>
+		<h3>Writing letters</h3>
+		<br />
+		<p>Alternately, you could solve by recursion.</p>
+		<br />
+		<p class='fragment'>WriteLetter(Friend_1, Friend_2, ..., Friend_n):</p>
+		<pre class='fragment'><code>
+if n = 1
+	get a piece of paper and a pen and write to Friend_n
+else
+    WriteLetter(Friend_1)
+    and WriteLetter(Friend_2, ..., Friend_n)
+		</code></pre>
+	</section>
+
+	<section>
+		<h3>Writing letters</h3>
+		<br />
+		<p>You can break the friends up in to different sized subproblems and still use recursion.</p>
+		<br />
+		<p class='fragment'>WriteLetter(Friend_1, Friend_2, ..., Friend_n):</p>
+		<pre class='fragment'><code>
+if n = 1
+	get a piece of paper and a pen and write to Friend_n
+else
+    WriteLetter(Friend_1, ..., Friend_(n/2))
+    and WriteLetter(Friend_(n/2 + 1), ..., Friend_n)
+		</code></pre>
+	</section>
+
+	<section>
+		<h3>Writing letters</h3>
+		<br/>
+		<p>What's the difference in these two ways of splitting up the problem to recurse?</p>
+		<br/>
+		<div class='fragment'>
+			<span id="recurse1_output"></span>
+			<span id="recurse2_output"></span>
+		</div>
+	</section>
+
+	<section>
+		<h3>Recursion vs. Iteration</h3>
+		<br />
+		<p>People often debate which is better for problem solving: recursion or iteration (looping). The short answer is...</p>
+		<br />
+		<div class='fragment'>There is no one right answer.</p>
+	</section>
+
+	<section>
+		<h3>Recursion vs. Iteration</h3>
+
+		<br/>
+		<p><strong>It depends on the programming language.</strong></p>
+		<br/>
+		<p class='fragment'>Some languages like C have a lot of overhead when they call functions. If you have to call the same function over and over and over, you can quickly run out of stack space (the way that the computer remembers the order of function calls).</p>
+
+	</section>
+
+	<section>
+		<h3>Recursion vs. Iteration</h3>
+		<br />
+		<p><strong>It depends on the problem.</strong></p>
+		<br/>
+		<p class='fragment'>Sometimes a recursive algorithm is more succinct and better captures the algorithm's intent.</p>
+		<br />
+		<p class='fragment'>Some classes of problems feel like they're just MADE for a recursive solution, like problems about trees in graph theory.</p>
+	</section>
 	<section>
 		<h3>Recursion: DFS</h3>
 		<p>Remember Depth-First Search that we talked about before? We can express that as a recursive algorithm.</p>
@@ -794,9 +979,9 @@ return false
 		<br />
 		<p class='fragment'>DFS(graph \(G\), vertex \(v\), searchterm \(i\)):</p>
 		<pre class='fragment'><code>
-if v is null
+if v does not exist
    return false
-else if v's label matches i
+else if the label of v matches i
    return true
 else
    for every edge from v to other vertex u
@@ -880,40 +1065,13 @@ else
 		</ul>
 	</section>
 
-	<section>
-		<h3>Sorting Algorithms</h3>
-		<br />
-		<p>In today's warm-up, we sorted ourselves using the <strong>Merge Sort</strong> algorithm.</p>
-		<br />
-		<p>There are lots of other ways to sort things!</p>
-	</section>
-
-	<section>
-		<h3>Sorting Algorithms</h3>
-
-		<ol>
-			<li><strong>Selection sort</strong> - repeatedly find the smallest element and append to the sorted list</li>
-			<li class='fragment'><strong>Insertion sort</strong> - repeatedly take the first element and find it's place in the sorted list</li>
-			<li class='fragment'><strong>Quick sort</strong> - repeatedly picks a pivot point and finds elements smaller and larger than the pivot</li>
-			<li class='fragment'><strong>Merge sort</strong> - divide into small groups and repeatedly merge the sorted sub-lists</li>
-			<li class='fragment'><strong>Radix sort</strong> - repeatedly sort by significant digits, from smallest to largest </li>
-			<li class='fragment'><strong>Bubble sort</strong> - repeatedly compare pairs and swap if necessary until the list is sorted </li>
-		</ol>
-
-	</section>
-
-	<section>
-	<h3>Sorting Algorithms: Visuals!</h3>
-		<br/>
-		<iframe width="560" height="315" src="http://www.youtube.com/embed/kPRA0W1kECg" frameborder="0" allowfullscreen></iframe>
-	</section>
 
 	<section>
 		<h3>Special topics</h3>
 		<br />
-		<p>If there's one thing I learned in computer science classes, it's that the speaker always talks about their own research last.</p>
+		<p>If there's one thing I learned in computer science classes, it's that the speaker always talks about their own research last if they have extra time.</p>
 		<br />
-		<p class='fragment'>Today I'm going to teach you about <strong>coin sets</strong>.</p>
+		<p class='fragment'>Today I'm going to teach you about <strong>coin sets</strong> and <strong>greedy algorithms</strong>.</p>
 	</section>
 
 	<section>
@@ -988,8 +1146,8 @@ else
 					</ul>
 			</li>
 			<li class='fragment'>Introduction to Graph Theory</li>
-			<li class='fragment'>Introduction to Recursion</li>
 			<li class='fragment'>Introduction to Sorting</li>
+			<li class='fragment'>Introduction to Recursion</li>
 			<li class='fragment'>Introduction to Greedy algorithms</li>
 		</uL>
 	</section>
@@ -1015,6 +1173,9 @@ else
 		<strong><u>Introduction to Graph Theory</u> - Robin J. Wilson</strong><br />(<a href='http://www.amazon.com/Introduction-Graph-Theory-5th-Edition/dp/027372889X' target='_blank'>available on Amazon</a>)
 		<br />About this book: An advanced undergraduate textbook for a course dedicated to the study of graph theory.
 		</p>
+		<br />
+
+		<p><strong><u>Wikipedia</u></strong></p>
 	</section>
 
 	<section>
