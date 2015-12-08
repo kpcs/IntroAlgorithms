@@ -679,6 +679,16 @@ return false
 	</section>
 
 	<section>
+		<h3>Tree traversal</h3>
+		<p>Most people in the room are already VERY familiar with one tree we talk about a lot in GDI classes:</p>
+		<br/>
+		<div class='fragment'>The HTML Document Object Model (DOM)!</div>
+		<br/>
+		<img class='fragment' src="images/dom.gif" />
+
+	</section>
+
+	<section>
 		<h3>Tree Traversal</h3>
 		<br />
 		<p>Suppose we have a connected tree where each vertex has a label, and we're looking for a vertex with a particular label.</p>
@@ -788,7 +798,7 @@ return false
 		<br />
 		<p><strong>Your mission:</strong></p>
 		<br />
-		<p>Sort yourselves in height order following the <strong>Merge Sort</strong> algorithm.</p>
+		<p>Take a card with a number. Sort yourselves in numeric order following the <strong>Merge Sort</strong> algorithm.</p>
 
 		<br />
 		<p>We'll walk through it together!</p>
@@ -799,7 +809,7 @@ return false
 		<ol>
 			<li>Start as one unorganized clump of \(n\) humans.</li>
 			<li class='fragment'>Split into two even groups.</li>
-			<li class='fragment'>Each of the two groups splits into two groups (total: four groups of \(n/4\) humans).  Keep track of how you are splitting.</li>
+			<li class='fragment'>Each of the two groups splits into two groups (total: four groups of \(n/4\) humans).</li>
 			<li class='fragment'>Continue splitting up (and keep track of the splits!) until there are \(n\) groups, each with \(1\) human.</li>
 		</ol>
 	</section>
@@ -808,24 +818,29 @@ return false
 		<h3>Merge Sort Part 2: Merge</h3>
 		<ol>
 			<li>Each pair of humans that was the last to break apart should get back together into a group of 2.</li>
-			<li class='fragment'>Compare between the two of you who is taller and who is shorter. Shorter person stands on the left side, taller person stands on the right side.</li>
-			<li class='fragment'>Now the two pairs that originally split apart from each other work together to merge...
+			<li class='fragment'>Compare your two numbers. The person with the smaller number should move to the left side, and the person with the larger number should move to the right side.</li>
+			<li class='fragment'>Now you have a group of 2 that is sorted. All around the room, we should have sorted groups of 2.</li>
+			<li class='fragment'>Next, two groups of size 2, which originally split apart from each other, need to merge...</li>
 		</ol>
 	</section>
 
 	<section>
 		<h3>Merge Sort Part 2: Merge</h3>
 		<ol style='list-style-type: lower-alpha;'>
-			<li>Starting from the SHORTEST person in each group, figure out who is truly the shortest. Let's say this person came from group A.  The shortest person moves to the left-most position. The other short person from group B stays put.</li>
-			<li class='fragment'>The next-shortest person from group A now compares against the person who stayed put.</li>
-			<li class='fragment'>Continue comparing until your two pairs are merged into a line of four.</li>
+			<li class='fragment'>Two sorted groups approach each other.</li>
+			<li class='fragment'>From EACH sorted group, the person with the SMALLEST number should step forward. These two people should compare their numbers.</li>
+			<li class='fragment'>Whoever has the smaller number (Person A) should move to the side to start a new sorted line; whoever has the larger number (Person B) should stay put and wait for another comparison.</li>
+			<li class='fragment'>The next smallest number holder from Person A's group should step forward and compare numbers with Person B.</li>
+			<li class='fragment'>Continue comparing until your two groups have merged into one sorted group.</li>
 		</ol>
-		<br/>
-		<br/>
-		<p class='fragment'>Continue this process until everyone has merged into a SINGLE line!</p>
+	</section>
 
-		</ol>
-
+	<section>
+		<h3>Merge Sort Part 2: Merge</h3>
+		<br/>
+		<p>We'll continue this process until everyone has merged into a SINGLE line!</p>
+		<br/>
+		<p class='fragment'>Let's go try it!</p>
 	</section>
 
 	<section>
